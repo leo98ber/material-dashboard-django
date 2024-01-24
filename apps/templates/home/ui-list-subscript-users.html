@@ -1,0 +1,50 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Subscription</h4>
+                    <form method="GET" action="{% url 'add_subscription' %}">
+                    {% csrf_token %}
+                        <button type="submit" class="btn btn-info btn-secondary float-right" >Add subscription</button>
+                    </form>
+                  <p class="card-category">Add user subscription data</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        {% for col in titles %}
+                            <th >{{col}}</th>
+                        {% endfor %}
+                      </thead>
+                      <tbody>
+                        {% for row in data %}
+                            <tr>
+                                {% for key, val  in row.items %}
+                                    <td>{{val}}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
